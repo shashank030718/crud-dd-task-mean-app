@@ -10,7 +10,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-
     - name: Checkout code
       uses: actions/checkout@v3
 
@@ -21,18 +20,16 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Build Backend Image
-      run: |
-        docker build -t shashank/backend:latest ./backend
+      run: docker build -t shahank/backend:latest ./backend
 
     - name: Build Frontend Image
-      run: |
-        docker build -t shashank/frontend:latest ./frontend
+      run: docker build -t shahank/frontend:latest ./frontend
 
     - name: Push Backend Image
-      run: docker push shashank/backend:latest
+      run: docker push shahank/backend:latest
 
     - name: Push Frontend Image
-      run: docker push shashank/frontend:latest
+      run: docker push shahank/frontend:latest
 
     - name: Deploy to EC2
       uses: appleboy/ssh-action@v1.0.0
@@ -42,7 +39,7 @@ jobs:
         key: ${{ secrets.EC2_SSH_KEY }}
         script: |
           cd ~
-          docker pull shashank/backend:latest
-          docker pull shashank/frontend:latest
+          docker pull shahank/backend:latest
+          docker pull shahank/frontend:latest
           docker compose down
           docker compose up -d --force-recreate
