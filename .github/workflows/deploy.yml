@@ -41,5 +41,5 @@ jobs:
           cd ~
           docker pull shahank/backend:latest
           docker pull shahank/frontend:latest
-          docker compose down
-          docker compose up -d --force-recreate
+          docker-compose down
+          docker-compose up -d --force-recreate
